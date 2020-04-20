@@ -1,0 +1,32 @@
+{
+  "name": "thiscodeworks",
+  "version": "0.1",
+  "description": "Save & organize the best of code",
+  "permissions": ["activeTab", "declarativeContent", "storage", "tabs"],
+  "background": {
+    "scripts": ["background.js", "popup.js"],
+    "persistent": false
+  },
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": ["content.js"],
+    "exclude_matches": ["*://thiscodeworks.com/*", "http://localhost:3000/*"]
+  }],
+  "page_action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "images/tcw_16.png",
+      "32": "images/tcw_32.png",
+      "48": "images/tcw_48.png",
+      "128": "images/tcw_128.png"
+    }
+  },
+  "icons": {
+    "16": "images/tcw_16.png",
+    "32": "images/tcw_32.png",
+    "48": "images/tcw_48.png",
+    "128": "images/tcw_128.png"
+  },
+  "manifest_version": 2
+}
+
