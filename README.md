@@ -16,3 +16,7 @@ Save &amp; collect code snippets that work on the web.
 1. Log in or sign up to thiscodeworks.com
 2. Anytime you see a code snippet, click the "Save Code" button underneath to save that individual snippet. 
 3. You can save the whole webpage by clicking the button in the toolbar.
+
+## Change log
+
+v 0.2 - Fixed bug where ()' were not encoded breaking the link to save code snippet.
