@@ -1,8 +1,23 @@
-let codeBlocks = document.getElementsByTagName("pre");
+let codemirrorBlocks = document.getElementsByClassName("CodeMirror-code");
 
-for (elt of codeBlocks) {
-    var textCode = encodeURIComponent(elt.innerText);
-    var textCode = textCode.replace("(", "%28").replace(")", "%29").replace(/'/g, "%27");
-    console.log("elt is "+textCode);
-    elt.insertAdjacentHTML("afterend", "<a href='http://www.thiscodeworks.com/new?code="+textCode+"&url="+window.location.href+"'target='_blank'><u>Save code</u><a>");
+if (codemirrorBlocks.length === 0) { //For simple <pre> blocks
+    let codeBlocks = document.getElementsByTagName("pre");
+    for (elt of codeBlocks) {
+        addBtn(elt, elt.innerText);
+    }
+} else {
+    for (elt of codemirrorBlocks) { // For sites that use Codemirror like Codepen, JSFiddle
+        var textBlock = elt.innerText;
+        var lineNumbers = elt.getElementsByClassName("CodeMirror-linenumber"); 
+        for (var i = 0; i < lineNumbers.length; i++){ // remove linenumbers from snippet
+            textBlock = textBlock.replace(lineNumbers[i].innerText,"");
+        }
+        addBtn(elt, textBlock);
+    }
+}
+
+//Add save code button after code block
+function addBtn (element, text){
+    var textCode = text.replace("(", "%28").replace(")", "%29").replace(/'/g, "%27");
+    element.insertAdjacentHTML("afterend", "<a href='http://www.thiscodeworks.com/new?code=" + encodeURIComponent(textCode) + "&url=" + window.location.href + "'target='_blank'><u>Save code</u><a>");
 }
