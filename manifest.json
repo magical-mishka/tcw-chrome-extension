@@ -1,6 +1,6 @@
 {
   "name": "thiscodeworks",
-  "version": "0.3",
+  "version": "0.4",
   "description": "Save & organize the best of code",
   "permissions": ["activeTab", "declarativeContent", "storage", "tabs"],
   "background": {

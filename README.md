@@ -20,3 +20,5 @@ Save &amp; collect code snippets that work on the web.
 ## Change log
 
 v 0.2 - Fixed bug where ()' were not encoded breaking the link to save code snippet.
+v 0.3 - Resolved issue where the Save Code button would appear after each line on sites like Codepen which had used Codemirror. 
+v 0.4 - Error in popup resolved for null value of saveLink
