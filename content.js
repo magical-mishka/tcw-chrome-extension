@@ -3,7 +3,10 @@ let codemirrorBlocks = document.getElementsByClassName("CodeMirror-code");
 if (codemirrorBlocks.length === 0) { //For simple <pre> blocks
     let codeBlocks = document.getElementsByTagName("pre");
     for (elt of codeBlocks) {
-        addBtn(elt, elt.innerText);
+        var style = window.getComputedStyle(elt);
+        var originalMargin = style.marginBottom;
+        elt.style.marginBottom = 0;
+        addBtn(elt, elt.innerText, originalMargin);
     }
 } else {
     for (elt of codemirrorBlocks) { // For sites that use Codemirror like Codepen, JSFiddle
@@ -17,7 +20,8 @@ if (codemirrorBlocks.length === 0) { //For simple <pre> blocks
 }
 
 //Add save code button after code block
-function addBtn (element, text){
+function addBtn (element, text, margin){
     var textCode = text.replace(/'/g, "%27");
-    element.insertAdjacentHTML("afterend", "<a href='http://www.thiscodeworks.com/new?code=" + encodeURIComponent(textCode) + "&url=" + window.location.href + "&pagetitle="+encodeURIComponent(document.title)+"' target='_blank'><u>Save code</u><a>");
+    element.insertAdjacentHTML("afterend", "<div style='text-align:right; margin-bottom:"+margin+";'><span style='background:#455a64; padding: 5px; border-radius: 0 0 5px 5px;  display: inline-block;'><a href='http://www.thiscodeworks.com/new?code=" + encodeURIComponent(textCode) + "&url=" + window.location.href + "&pagetitle="+encodeURIComponent(document.title)+"' target='_blank' style='color: white; text-decoration: none;'><img src='chrome-extension://aggapgjocakendangifdnlmellmcdmpl/images/saveicon.png' style='margin:0; vertical-align: bottom; '> Save<a></span></div>");
 }
+

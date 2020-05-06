@@ -1,6 +1,6 @@
 {
   "name": "thiscodeworks",
-  "version": "0.7",
+  "version": "0.8",
   "description": "Save & organize the best of code",
   "permissions": ["activeTab", "declarativeContent", "storage", "tabs"],
   "background": {
@@ -27,6 +27,9 @@
     "48": "images/tcw_48.png",
     "128": "images/tcw_128.png"
   },
+  "web_accessible_resources": [
+    "images/saveicon.png"
+   ],
   "manifest_version": 2
 }
 
