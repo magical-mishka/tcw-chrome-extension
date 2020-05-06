@@ -19,5 +19,5 @@ if (codemirrorBlocks.length === 0) { //For simple <pre> blocks
 //Add save code button after code block
 function addBtn (element, text){
     var textCode = text.replace(/'/g, "%27");
-    element.insertAdjacentHTML("afterend", "<a href='http://www.thiscodeworks.com/new?code=" + encodeURIComponent(textCode) + "&url=" + window.location.href + "'target='_blank'><u>Save code</u><a>");
+    element.insertAdjacentHTML("afterend", "<a href='http://www.thiscodeworks.com/new?code=" + encodeURIComponent(textCode) + "&url=" + window.location.href + "&pagetitle="+encodeURIComponent(document.title)+"' target='_blank'><u>Save code</u><a>");
 }
