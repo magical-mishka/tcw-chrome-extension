@@ -22,6 +22,7 @@ if (codemirrorBlocks.length === 0) { //For simple <pre> blocks
 //Add save code button after code block
 function addBtn (element, text, margin){
     var textCode = text.replace(/'/g, "%27");
-    element.insertAdjacentHTML("afterend", "<div style='text-align:right; margin-bottom:"+margin+";'><span style='background:#455a64; padding: 5px; border-radius: 0 0 5px 5px;  display: inline-block;'><a href='http://www.thiscodeworks.com/new?code=" + encodeURIComponent(textCode) + "&url=" + window.location.href + "&pagetitle="+encodeURIComponent(document.title)+"' target='_blank' style='color: white; text-decoration: none;'><img src='chrome-extension://annlhfjgbkfmbbejkbdpgbmpbcjnehbb/images/saveicon.png' style='margin:0; vertical-align: bottom; '> Save<a></span></div>");
+    var url=chrome.runtime.getURL("images/saveicon.png");
+    element.insertAdjacentHTML("afterend", "<div style='text-align:right; margin-bottom:"+margin+";'><span style='background:#455a64; padding: 5px; border-radius: 0 0 5px 5px;  display: inline-block;'><a href='http://www.thiscodeworks.com/new?code=" + encodeURIComponent(textCode) + "&url=" + window.location.href + "&pagetitle="+encodeURIComponent(document.title)+"' target='_blank' style='color: white; text-decoration: none;'><img src='"+url+"' style='margin:0; vertical-align: bottom; '> Save<a></span></div>");
 }
 
