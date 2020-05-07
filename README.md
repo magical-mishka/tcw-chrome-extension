@@ -27,6 +27,7 @@ Save &amp; collect code snippets that work on the web.
 * v0.7 - Style changes to pop-up to match the website (Thank you Yayson!)
 * v0.8 - Style changes to save snippet button - icon+text in form of label under code blocks
 * v0.9 - Extension renamed to "Save Code"
+* v0.9.1 - Removed unncessary permissions
 
 ## CONTRIBUTE OR SHARE ISSUES
 

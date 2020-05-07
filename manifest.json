@@ -1,8 +1,8 @@
 {
   "name": "Save Code",
-  "version": "0.9",
+  "version": "0.9.1",
   "description": "Save & organize code snippets that work",
-  "permissions": ["activeTab", "declarativeContent", "storage", "tabs"],
+  "permissions": ["declarativeContent", "tabs"],
   "background": {
     "scripts": ["background.js", "popup.js"],
     "persistent": false
