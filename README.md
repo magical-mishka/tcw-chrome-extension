@@ -28,7 +28,8 @@ Save &amp; collect code snippets that work on the web.
 * v0.8 - Style changes to save snippet button - icon+text in form of label under code blocks
 * v0.9 - Extension renamed to "Save Code"
 * v0.9.1 - Removed unncessary permissions
-*v 0.9.2 - Exchanged "tabs" permision for "activeTab"
+* v0.9.2 - Exchanged "tabs" permision for "activeTab"
+* v0.9.3 - URL fix for the save-icon. (Thanks again to Yayson!)
 
 ## CONTRIBUTE OR SHARE ISSUES
 
