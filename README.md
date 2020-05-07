@@ -25,7 +25,8 @@ Save &amp; collect code snippets that work on the web.
 * v0.5 - Reversed brackets encoding.
 * v0.6 - Saving code snippet now saves page title as well.
 * v0.7 - Style changes to pop-up to match the website (Thank you Yayson!)
-* v0.8 - Style changes to save snippet button - icon+text in form of label under <pre>
+* v0.8 - Style changes to save snippet button - icon+text in form of label under code blocks
+* v0.9 - Extension renamed to "Save Code"
 
 ## CONTRIBUTE OR SHARE ISSUES
 
