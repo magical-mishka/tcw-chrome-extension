@@ -1,6 +1,6 @@
 {
   "name": "Save Code",
-  "version": "0.9.4",
+  "version": "0.9.5",
   "description": "Save & organize code snippets that work",
   "permissions": ["declarativeContent", "activeTab"],
   "background": {
