@@ -35,3 +35,9 @@ Save &amp; collect code snippets that work on the web.
 ## CONTRIBUTE OR SHARE ISSUES
 
 [Github](https://github.com/magical-mishka/tcw-chrome-extension)
+
+### License 
+
+This code repository has no license. The purpose of providing public access to the extension is for developers using the extension to share suggestions and fixes to help make it better. 
+
+Anybody contribting to this project does so under the agreement that they are entitled to provide a contribution, that they cannot withdraw permission to use their contribution at a later date, and that Mishka Orakzai (the creator of this project) has permission to use their contribution in commercial products pertaining to the Save Code Chrome Extension and Thiscodeworks.com website.
