@@ -30,8 +30,9 @@ Save &amp; collect code snippets that work on the web.
 * v0.9.1 - Removed unncessary permissions
 * v0.9.2 - Exchanged "tabs" permision for "activeTab"
 * v0.9.3 - URL fix for the save-icon. (Thanks again to Yayson!)
-* v0.9.4 - Fixed icon height and width (to resolve issue on sites that have CSS styling for <img> tags)
+* v0.9.4 - Fixed icon height and width (to resolve issue on sites that have CSS styling for img tags)
 * v0.9.5 - Set background-color of icon to transparent. For GitHub.
+* v0.9.6 - Remove icon border for sites that set border styling to images.
 
 ## CONTRIBUTE
 
