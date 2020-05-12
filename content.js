@@ -26,3 +26,24 @@ function addBtn (element, text, margin){
     element.insertAdjacentHTML("afterend", "<div style='text-align:right; margin-bottom:"+margin+";'><span style='background:#455a64; padding: 5px; border-radius: 0 0 5px 5px;  display: inline-block;'><a href='http://www.thiscodeworks.com/new?code=" + encodeURIComponent(textCode) + "&url=" + window.location.href + "&pagetitle="+encodeURIComponent(document.title)+"' target='_blank' style='color: white; text-decoration: none;'><img src='"+url+"' style='margin:0; vertical-align: bottom; height: 19px; width: 19px;background: #ffffff00; border: none;'> Save<a></span></div>");
 }
 
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+        if( request === "sidebar") {
+           console.log("we're through");
+           var src = chrome.runtime.getURL("sidebar.html");
+           var newFrame = document.createElement("iframe");
+           newFrame.style.width = "250px";
+           newFrame.style.position = "fixed";
+           newFrame.style.zIndex = 9999;
+           newFrame.style.height = "100vh";
+           newFrame.style.top = 0;
+           newFrame.setAttribute("src", src);
+           newFrame.setAttribute("id", "code-sidebar");
+           document.body.appendChild(newFrame);
+
+        }
+    });
+
+  
+
+    

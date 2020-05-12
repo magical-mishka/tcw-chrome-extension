@@ -28,8 +28,10 @@
     "128": "images/tcw_128.png"
   },
   "web_accessible_resources": [
-    "images/saveicon.png"
+    "images/saveicon.png",
+    "sidebar.html"
    ],
+   "content_security_policy": "script-src 'self' https://www.thiscodeworks.com;  object-src 'self'",
   "manifest_version": 2
 }
 
