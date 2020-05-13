@@ -34,6 +34,7 @@ Save &amp; collect code snippets that work on the web.
 * v0.9.5 - Set background-color of icon to transparent. For GitHub.
 * v0.9.6 - Remove icon border for sites that set border styling to images.
 * v0.9.7 - Sidebar for viewing all saved code without visiting website. Logged in users session ID saved by browser.
+* v0.9.8 - Error handling for Code Sidebar for pages that aren't refreshed after installation.
 
 ## CONTRIBUTE
 

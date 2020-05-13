@@ -30,7 +30,8 @@ function addBtn (element, text, margin) {
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         if( request === "sidebar") {
-           var src = chrome.runtime.getURL("sidebar.html");
+            sendResponse({received: "check"});
+            var src = chrome.runtime.getURL("sidebar.html");
            var newFrame = document.createElement("iframe");
            newFrame.style.width = "250px";
            newFrame.style.position = "fixed";

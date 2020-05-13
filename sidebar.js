@@ -6,7 +6,7 @@ chrome.storage.local.get(['id'], function(result) {
     if (userID){
         getPosts();
     } else {
-        document.getElementById("myDiv").innerHTML = "<a href='www.thiscodeworks.com/extension/initiate' target='_blank'>Error! You need to login.</a>";
+        document.getElementById("myDiv").innerHTML = "<a href='https://www.thiscodeworks.com/extension/initiate' target='_blank'>Error! You need to login.</a>";
     }
 });
 

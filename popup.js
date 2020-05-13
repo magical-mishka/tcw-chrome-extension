@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', function() {
       recent.addEventListener('click', function(response) {
         chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
             chrome.tabs.sendMessage(tabs[0].id, "sidebar", function(response) {
+              if (chrome.runtime.lastError) {
+                  alert("This page needs to be refreshed before you can access recent saves."); //for pages that haven't been refreshed after extension installation
+              }
              });
           });
     });
@@ -25,6 +28,7 @@ chrome.tabs.getSelected(null,function(tab) { // null defaults to current window
 
   //For when browser is first installed
   if (url === "https://www.thiscodeworks.com/extension/initializing") {
+    console.log("url matched");
       getUserId();   //Save user ID for getting & saving code without visiting thiscodeworks.com
     }
 });
@@ -33,11 +37,7 @@ chrome.tabs.getSelected(null,function(tab) { // null defaults to current window
 // Function to get and locally save userID from thiscodeworks.com
 function getUserId() {
   chrome.storage.local.clear(function() {
-    var error = chrome.runtime.lastError;
-    if (error) {
-        console.error(error);
-    }
-});
+    });
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function() {
       if (xmlhttp.readyState == XMLHttpRequest.DONE) {   // XMLHttpRequest.DONE == 4
@@ -46,7 +46,7 @@ function getUserId() {
               })               
           }
           else if (xmlhttp.status == 400) {
-              alert('There was an error 400. Please send a screenshot & some context of this error to mishka@thiscodeworks.com');
+              alert('Error 400 --> Please send a screenshot & some context of this error to mishka@thiscodeworks.com');
           }
           else {
               alert('Error != 400 --> Please send a screenshot & some context of this error to mishka@thiscodeworks.com');
