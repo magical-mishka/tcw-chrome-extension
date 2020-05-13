@@ -2,7 +2,7 @@
   "name": "Save Code",
   "version": "0.9.6",
   "description": "Save & organize code snippets that work",
-  "permissions": ["declarativeContent", "activeTab"],
+  "permissions": ["declarativeContent", "activeTab", "storage"],
   "background": {
     "scripts": ["background.js", "popup.js"],
     "persistent": false

@@ -20,16 +20,16 @@ if (codemirrorBlocks.length === 0) { //For simple <pre> blocks
 }
 
 //Add save code button after code block
-function addBtn (element, text, margin){
+function addBtn (element, text, margin) {
     var textCode = text.replace(/'/g, "%27");
     var url=chrome.runtime.getURL("images/saveicon.png");
     element.insertAdjacentHTML("afterend", "<div style='text-align:right; margin-bottom:"+margin+";'><span style='background:#455a64; padding: 5px; border-radius: 0 0 5px 5px;  display: inline-block;'><a href='http://www.thiscodeworks.com/new?code=" + encodeURIComponent(textCode) + "&url=" + window.location.href + "&pagetitle="+encodeURIComponent(document.title)+"' target='_blank' style='color: white; text-decoration: none;'><img src='"+url+"' style='margin:0; vertical-align: bottom; height: 19px; width: 19px;background: #ffffff00; border: none;'> Save<a></span></div>");
 }
 
+//Upon receiving sidebar command and userID, iframe is created
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         if( request === "sidebar") {
-           console.log("we're through");
            var src = chrome.runtime.getURL("sidebar.html");
            var newFrame = document.createElement("iframe");
            newFrame.style.width = "250px";
@@ -40,10 +40,18 @@ chrome.runtime.onMessage.addListener(
            newFrame.setAttribute("src", src);
            newFrame.setAttribute("id", "code-sidebar");
            document.body.appendChild(newFrame);
-
         }
+
     });
 
-  
+    //Suicide request from Sidebar
+    window.addEventListener("message", receiveMessage, false);
+    function receiveMessage(event){
+        if (event.data=="removetheiframe"){
+           var element = document.getElementById('code-sidebar');
+           element.parentNode.removeChild(element);
+        }
+     }
+
 
     

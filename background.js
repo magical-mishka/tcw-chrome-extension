@@ -9,6 +9,11 @@ chrome.runtime.onInstalled.addListener(function() {
         })
         ],
             actions: [new chrome.declarativeContent.ShowPageAction()]
-      }]);
+      }
+    ]);
+    });
+
+    chrome.tabs.create({ //To start sign user into extension
+      url: 'https://www.thiscodeworks.com/extension/initiate'
     });
   });

@@ -1,11 +1,24 @@
-
 <style>
     body {
         height: 100%;
         width: 100%;
-        background: #273238;
         color: white;
-        font:14px "Roboto", Helvetica, Arial, sans-serif;        
+        background: #445a64;
+        font:14px "Roboto", Helvetica, Arial, sans-serif; 
+        margin: 0;       
+    }
+    header {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 10px;
+        background: #273238;
+    }
+    header>h1 {
+        display: inline-flex;
+    }
+    header>a {
+        color: #f44336;
+        text-decoration: none;
     }
     ul {
         padding: 0;
@@ -19,21 +32,18 @@
         text-decoration: none;
     }
     li:hover {
-        background: #445a64;
+        background: #8bc349;
     }
-
-  
 </style>
 
 <section id="sidebar-section">
     <header>
-        <a href="#" onclick="destroySidebar()" style="color:firebrick">X</a>
-        <h1>Recently Saved</h1>
+        <h1>Saved Code</h1>
+        <a href="#" id="destroySidebar"><h1>X</h1></a>
     </header>
     <div id="myDiv">
         <p>Loading...</p>
-        
     </div>
-</section>
+    </section>
 
 <script src="sidebar.js"></script>
