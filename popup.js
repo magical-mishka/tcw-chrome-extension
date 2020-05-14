@@ -25,35 +25,5 @@ chrome.tabs.getSelected(null,function(tab) { // null defaults to current window
   if (saveLink !== null) {
     saveLink.href = "http://www.thiscodeworks.com/newlink?url="+url+"&pagetitle="+title; //Save webpage
   } 
-
-  //For when browser is first installed
-  if (url === "https://www.thiscodeworks.com/extension/initializing") {
-    console.log("url matched");
-      getUserId();   //Save user ID for getting & saving code without visiting thiscodeworks.com
-    }
 });
 
-
-// Function to get and locally save userID from thiscodeworks.com
-function getUserId() {
-  chrome.storage.local.clear(function() {
-    });
-  var xmlhttp = new XMLHttpRequest();
-  xmlhttp.onreadystatechange = function() {
-      if (xmlhttp.readyState == XMLHttpRequest.DONE) {   // XMLHttpRequest.DONE == 4
-          if (xmlhttp.status == 200) {
-               chrome.storage.local.set({"id": xmlhttp.responseText}, function(){
-              })               
-          }
-          else if (xmlhttp.status == 400) {
-              alert('Error 400 --> Please send a screenshot & some context of this error to mishka@thiscodeworks.com');
-          }
-          else {
-              alert('Error != 400 --> Please send a screenshot & some context of this error to mishka@thiscodeworks.com');
-          }
-      }
-  };
-
-  xmlhttp.open("GET", "https://www.thiscodeworks.com/extension/user-id", true);
-  xmlhttp.send();
-}

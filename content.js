@@ -54,5 +54,10 @@ chrome.runtime.onMessage.addListener(
         }
      }
 
+     //Send URL to background.js for intializing
+     if (window.location.href === "https://www.thiscodeworks.com/extension/initializing"){
+        chrome.runtime.sendMessage({logged: "yes"});
+     }
+
 
     

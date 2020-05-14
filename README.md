@@ -35,6 +35,7 @@ Save &amp; collect code snippets that work on the web.
 * v0.9.6 - Remove icon border for sites that set border styling to images.
 * v0.9.7 - Sidebar for viewing all saved code without visiting website. Logged in users session ID saved by browser.
 * v0.9.8 - Error handling for Code Sidebar for pages that aren't refreshed after installation.
+* v0.9.9 - Shifted function to save user ID to background.js from pop.js so that login is no longer dependent on popup activation.
 
 ## CONTRIBUTE
 
