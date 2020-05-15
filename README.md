@@ -10,7 +10,6 @@ Save &amp; collect code snippets that work on the web.
 5. Click the button at the top of the extensions page that says "Load unpacked" and load the folder that you downloaded which contains the extension.
 6. The extension should be up and running. 
 
-
 ## HOW TO USE
 
 1. Log in or sign up to thiscodeworks.com
@@ -37,6 +36,7 @@ Save &amp; collect code snippets that work on the web.
 * v0.9.8 - Error handling for Code Sidebar for pages that aren't refreshed after installation.
 * v0.9.9 - Shifted function to save user ID to background.js from pop.js so that login is no longer dependent on popup activation.
 * v1.0.0 - Save code snippet within a popup on the same page.
+* v1.0.1 - Removed content script on Google as the save button would appear on translation pages.
 
 ## CONTRIBUTE
 

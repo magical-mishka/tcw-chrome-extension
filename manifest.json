@@ -1,6 +1,6 @@
 {
   "name": "Save Code",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Save & organize code snippets that work",
   "permissions": ["declarativeContent", "activeTab", "storage"],
   "background": {
@@ -10,7 +10,7 @@
   "content_scripts": [{
     "matches": ["<all_urls>"],
     "js": ["content.js"],
-    "exclude_matches": ["*://www.thiscodeworks.com/new*"]
+    "exclude_matches": ["*://www.thiscodeworks.com/new*", "*://www.google.com/*"]
   }],
   "page_action": {
     "default_popup": "popup.html",

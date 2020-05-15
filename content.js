@@ -88,11 +88,13 @@ for (var i = 0; i < saveBtns.length; i++) {
 //Kill save code popup when clicked outside frame
 var popup = document.getElementById("save-code-popup-parent");
 document.addEventListener('click', function (event) {
-    var isClickInside = popup.contains(event.target);
-    if (event.target.classList.contains('saveCodeBtn')) return;
-    if (!isClickInside) {
-        var iframe = document.getElementById('save-code-popup');
-        iframe.parentNode.removeChild(iframe);
-        popup.removeAttribute("style");
-    }
+    var iframe = document.getElementById('save-code-popup');
+    if (iframe){
+        var isClickInside = popup.contains(event.target);
+        if (event.target.classList.contains('saveCodeBtn')) return;
+        if (!isClickInside) {
+            iframe.parentNode.removeChild(iframe);
+            popup.removeAttribute("style");
+        }
+    } return;
 }, false);
