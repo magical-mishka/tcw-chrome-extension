@@ -23,7 +23,7 @@ if (codemirrorBlocks.length === 0) { //For simple <pre> blocks
 function addBtn(element, text, margin) {
     var textCode = text.replace(/'/g, "%27");
     var url = chrome.runtime.getURL("images/saveicon.png");
-    element.insertAdjacentHTML("afterend", "<div style='text-align:right; margin-bottom:" + margin + ";'><span style='background:#455a64; padding: 5px; border-radius: 0 0 5px 5px;  display: inline-block;'><a src='https://www.thiscodeworks.com/new?code=" + encodeURIComponent(textCode) + "&url=" + window.location.href + "&pagetitle=" + encodeURIComponent(document.title) + "' class='saveCodeBtn' style='color: white; text-decoration: none;'><img src='" + url + "' style='margin:0; vertical-align: bottom; height: 19px; width: 19px;background: #ffffff00; border: none;'> Save<a></span></div>");
+    element.insertAdjacentHTML("afterend", "<div style='text-align:right; margin-bottom:" + margin + ";'><span style='background:#455a64; padding: 5px; border-radius: 0 0 5px 5px;  display: inline-block;'><a src='https://www.thiscodeworks.com/new?code=" + encodeURIComponent(textCode) + "&url=" + window.location.href + "&pagetitle=" + encodeURIComponent(document.title) + "' class='saveCodeBtn' style='color: white; text-decoration: none; text-shadow: none;'><img src='" + url + "' style='margin:0; vertical-align: bottom; height: 19px; width: 19px;background: #ffffff00; border: none;'> Save<a></span></div>");
 }
 
 //Upon receiving sidebar command and userID, iframe is created
@@ -44,24 +44,24 @@ chrome.runtime.onMessage.addListener(
         }
     });
 
-//Suicide request from Sidebar
-window.addEventListener("message", receiveMessage, false);
-function receiveMessage(event) {
-    if (event.data == "removetheiframe") {
-        var element = document.getElementById('code-sidebar');
-        element.parentNode.removeChild(element);
-    }
-}
-
-//Send URL to background.js for intializing
-if (window.location.href === "https://www.thiscodeworks.com/extension/initializing") {
-    chrome.runtime.sendMessage({ logged: "yes" });
-}
-
 //create element to contain save code popup & preloader
 var saveFrame = document.createElement("div");
 saveFrame.setAttribute("id", "save-code-popup-parent")
 document.body.appendChild(saveFrame);
+
+//Suicide request for iframe
+window.addEventListener("message", receiveMessage, false);
+function receiveMessage(event) {
+    if (event.data == "removesidebar") {//destroys sidebar
+        var element = document.getElementById('code-sidebar');
+        element.parentNode.removeChild(element);
+    }
+    if (event.data == "removetheiframe") {//destroys save code popup
+        var iframe = document.getElementById('save-code-popup');
+        iframe.parentNode.removeChild(iframe);
+        saveFrame.removeAttribute("style");    
+    }
+}
 
 //Save snippet pop-up generator
 var saveBtns = document.getElementsByClassName("saveCodeBtn");
@@ -81,6 +81,7 @@ for (var i = 0; i < saveBtns.length; i++) {
         parent.style["box-shadow"] = "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)";
         form.style.width = "100%";
         form.style.height = "100%";
+        parent.style.background = "rgba(0, 0, 0, 0.5)";
         parent.appendChild(form);
     });
 }
@@ -98,3 +99,8 @@ document.addEventListener('click', function (event) {
         }
     } return;
 }, false);
+
+//Send URL to background.js for intializing
+if (window.location.href === "https://www.thiscodeworks.com/extension/initializing") {
+    chrome.runtime.sendMessage({ logged: "yes" });
+}

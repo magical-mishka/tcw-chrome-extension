@@ -37,6 +37,7 @@ Save &amp; collect code snippets that work on the web.
 * v0.9.9 - Shifted function to save user ID to background.js from pop.js so that login is no longer dependent on popup activation.
 * v1.0.0 - Save code snippet within a popup on the same page.
 * v1.0.1 - Removed content script on Google as the save button would appear on translation pages.
+* v1.0.2 - Popup to save snippet will now close upon save. Removed text-shadow for sites that had text-shadow effect.
 
 ## CONTRIBUTE
 

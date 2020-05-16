@@ -6,7 +6,7 @@ chrome.storage.local.get(['id'], function(result) {
     if (userID){
         getPosts();
     } else {
-        document.getElementById("myDiv").innerHTML = "<a href='https://www.thiscodeworks.com/extension/initiate' target='_blank'>Error! You need to login.</a>";
+        document.getElementById("myDiv").innerHTML = "<a href='https://www.thiscodeworks.com/extension/initiate' target='_blank'>Error! You need to login. Click here.</a>";
     }
 });
 
@@ -51,7 +51,7 @@ function buildList(data){
     return list;
 }
 
-//Function that sends request to parent to kill sidebar
+//Function that sends request to content script to kill sidebar
 document.getElementById("destroySidebar").addEventListener("click", function(){
-    parent.window.postMessage("removetheiframe", "*");
+    parent.window.postMessage("removesidebar", "*");
 });
