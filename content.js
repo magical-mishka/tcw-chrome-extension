@@ -33,7 +33,7 @@ chrome.runtime.onMessage.addListener(
             sendResponse({ received: "check" });
             var src = chrome.runtime.getURL("sidebar.html");
             var newFrame = document.createElement("iframe");
-            newFrame.style.width = "250px";
+            newFrame.style.width = "500px";
             newFrame.style.position = "fixed";
             newFrame.style.zIndex = 9999;
             newFrame.style.height = "100vh";

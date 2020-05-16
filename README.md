@@ -38,6 +38,7 @@ Save &amp; collect code snippets that work on the web.
 * v1.0.0 - Save code snippet within a popup on the same page.
 * v1.0.1 - Removed content script on Google as the save button would appear on translation pages.
 * v1.0.2 - Popup to save snippet will now close upon save. Removed text-shadow for sites that had text-shadow effect.
+* v1.0.3 - Added collapsible code blocks to the sidebar. Warning for Google pages.
 
 ## CONTRIBUTE
 
