@@ -9,8 +9,7 @@
   },
   "content_scripts": [{
     "matches": ["<all_urls>"],
-    "js": ["content.js"],
-    "exclude_matches": ["*://www.thiscodeworks.com/new*"]
+    "js": ["content.js"]
   }],
   "page_action": {
     "default_popup": "popup.html",

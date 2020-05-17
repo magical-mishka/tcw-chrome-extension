@@ -14,12 +14,16 @@ if (codemirrorBlocks.length === 0) { //For simple <pre> blocks
     }
 } else {
     for (elt of codemirrorBlocks) { // For sites that use Codemirror like Codepen, JSFiddle
+        if (elt.classList.contains("tw-ta")){ //No button tcw
+            //Do nothing
+        } else {
         var textBlock = elt.innerText;
         var lineNumbers = elt.getElementsByClassName("CodeMirror-linenumber");
         for (var i = 0; i < lineNumbers.length; i++) { // remove linenumbers from snippet
             textBlock = textBlock.replace(lineNumbers[i].innerText, "");
         }
         addBtn(elt, textBlock);
+        }
     }
 }
 
