@@ -63,6 +63,9 @@ document.getElementById("destroySidebar").addEventListener("click", function () 
 //Expand/collapse code block in list
 document.addEventListener("click", function (event) {
     if(event.target.tagName.toLowerCase() === "pre"){return}; //prevents close on clicking code
-    event.target.closest("li").querySelector("pre").classList.toggle("hide");
+    var pre = event.target.closest("li").querySelector("pre");
+    if (pre!= null){
+        pre.classList.toggle("hide");
+    };
 });
 
