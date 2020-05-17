@@ -3,10 +3,14 @@ let codemirrorBlocks = document.getElementsByClassName("CodeMirror-code");
 if (codemirrorBlocks.length === 0) { //For simple <pre> blocks
     let codeBlocks = document.getElementsByTagName("pre");
     for (elt of codeBlocks) {
-        var style = window.getComputedStyle(elt);
-        var originalMargin = style.marginBottom;
-        elt.style.marginBottom = 0;
-        addBtn(elt, elt.innerText, originalMargin);
+        if (elt.classList.contains("tw-ta")){ //No button on Google Translate
+            //Do nothing
+        } else {
+            var style = window.getComputedStyle(elt);
+            var originalMargin = style.marginBottom;
+            elt.style.marginBottom = 0;
+            addBtn(elt, elt.innerText, originalMargin);
+        }
     }
 } else {
     for (elt of codemirrorBlocks) { // For sites that use Codemirror like Codepen, JSFiddle

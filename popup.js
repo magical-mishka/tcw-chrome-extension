@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
         chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
             chrome.tabs.sendMessage(tabs[0].id, "sidebar", function(response) {
               if (chrome.runtime.lastError) {
-                  alert("This page needs to be refreshed before you can access recent saves. (Note: This extension temporarily does not run on the google.com domain)"); //for pages that haven't been refreshed after extension installation
+                  alert("This page needs to be refreshed before you can access recent saves."); //for pages that haven't been refreshed after extension installation
               }
              });
           });
