@@ -6,15 +6,23 @@ if (codemirrorBlocks.length === 0) { //For simple <pre> blocks
         if (elt.classList.contains("tw-ta")){ //No button on Google Translate
             //Do nothing
         } else {
+            var preClasses = elt.className;//to detect language of snippet in class
+            var lang = "";
+            if (preClasses.includes("lang-")){
+                lang = preClasses.split('lang-').pop().split(' ')[0];
+            }
+            if (preClasses.includes("language-")){
+                lang = preClasses.split('language-').pop().split(' ')[0];
+            }
             var style = window.getComputedStyle(elt);
             var originalMargin = style.marginBottom;
             elt.style.marginBottom = 0;
-            addBtn(elt, elt.innerText, originalMargin);
+            addBtn(elt, elt.innerText, originalMargin, lang);
         }
     }
 } else {
     for (elt of codemirrorBlocks) { // For sites that use Codemirror like Codepen, JSFiddle
-        if (elt.classList.contains("tw-ta")){ //No button tcw
+        if (elt.classList.contains("tw-ta")){ //No button on tcw
             //Do nothing
         } else {
         var textBlock = elt.innerText;
@@ -28,10 +36,10 @@ if (codemirrorBlocks.length === 0) { //For simple <pre> blocks
 }
 
 //Function to insert save code button
-function addBtn(element, text, margin) {
+function addBtn(element, text, margin, lang) {
     var textCode = text.replace(/'/g, "%27");
     var url = chrome.runtime.getURL("images/saveicon.png");
-    element.insertAdjacentHTML("afterend", "<div style='text-align:right; margin-bottom:" + margin + ";'><span style='background:#455a64; padding: 5px; border-radius: 0 0 5px 5px;  display: inline-block;'><a src='https://www.thiscodeworks.com/new?code=" + encodeURIComponent(textCode) + "&url=" + window.location.href + "&pagetitle=" + encodeURIComponent(document.title) + "' class='saveCodeBtn' style='color: white; text-decoration: none; text-shadow: none;'><img src='" + url + "' style='margin:0; vertical-align: bottom; height: 19px; width: 19px;background: #ffffff00; border: none;'> Save<a></span></div>");
+    element.insertAdjacentHTML("afterend", "<div style='text-align:right; margin-bottom:" + margin + ";'><span style='background:#455a64; padding: 5px; border-radius: 0 0 5px 5px;  display: inline-block;'><a src='https://www.thiscodeworks.com/new?code=" + encodeURIComponent(textCode) + "&url=" + window.location.href + "&pagetitle=" + encodeURIComponent(document.title) + "&lang="+lang+"' class='saveCodeBtn' style='color: white; text-decoration: none; text-shadow: none;'><img src='" + url + "' style='margin:0; vertical-align: bottom; height: 19px; width: 19px;background: #ffffff00; border: none;'> Save<a></span></div>");
 }
 
 //Upon receiving sidebar command and userID, iframe is created
