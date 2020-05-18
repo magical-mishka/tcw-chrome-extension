@@ -41,6 +41,7 @@ Save &amp; collect code snippets that work on the web.
 * v1.0.3 - Added collapsible code blocks to the sidebar. Warning for Google pages.
 * v1.0.3 - Google Translate & tcw editor exceptions added. 
 * v1.0.4 - Auto-save language of snippet from Stackoverflow and other sites with similar syntax for saving language.
+* v1.0.5 - Save webpage in popup. 
 
 ## CONTRIBUTE
 

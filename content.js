@@ -58,6 +58,10 @@ chrome.runtime.onMessage.addListener(
             newFrame.setAttribute("id", "code-sidebar");
             document.body.appendChild(newFrame);
         }
+        if (request.save === "page") {
+            sendResponse({ received: "check" });
+            createPopup(request.link);
+        }
     });
 
 //create element to contain save code popup & preloader
@@ -83,22 +87,7 @@ function receiveMessage(event) {
 var saveBtns = document.getElementsByClassName("saveCodeBtn");
 for (var i = 0; i < saveBtns.length; i++) {
     saveBtns[i].addEventListener("click", function () {
-        var form = document.createElement("iframe");
-        form.setAttribute("id", "save-code-popup");
-        form.setAttribute("src", this.getAttribute("src"));
-        var parent = document.getElementById("save-code-popup-parent");
-        parent.style.width = "80%";
-        parent.style.height = "80%";
-        parent.style.position = "fixed";
-        parent.style.zIndex = 9999;
-        parent.style.top = "10%";
-        parent.style.left = "10%";
-        parent.style.border = "1px solid darkgray";
-        parent.style["box-shadow"] = "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)";
-        form.style.width = "100%";
-        form.style.height = "100%";
-        parent.style.background = "rgba(0, 0, 0, 0.5)";
-        parent.appendChild(form);
+       createPopup(this.getAttribute("src"));
     });
 }
 
@@ -119,4 +108,23 @@ document.addEventListener('click', function (event) {
 //Send URL to background.js for intializing
 if (window.location.href === "https://www.thiscodeworks.com/extension/initializing") {
     chrome.runtime.sendMessage({ logged: "yes" });
+}
+
+function createPopup(src){
+    var form = document.createElement("iframe");
+    form.setAttribute("id", "save-code-popup");
+    form.setAttribute("src", src);
+    var parent = document.getElementById("save-code-popup-parent");
+    parent.style.width = "80%";
+    parent.style.height = "80%";
+    parent.style.position = "fixed";
+    parent.style.zIndex = 9999;
+    parent.style.top = "10%";
+    parent.style.left = "10%";
+    parent.style.border = "1px solid darkgray";
+    parent.style["box-shadow"] = "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)";
+    form.style.width = "100%";
+    form.style.height = "100%";
+    parent.style.background = "rgba(0, 0, 0, 0.5)";
+    parent.appendChild(form);
 }
