@@ -26,7 +26,9 @@ chrome.tabs.getSelected(null, function (tab) { // null defaults to current windo
     saveLink.addEventListener('click', function (response) {
       if (link.includes("https")) {
         chrome.tabs.sendMessage(tab.id, { save: "page", link: link }, function (response) {
-          if (chrome.runtime.lastError) { return }
+          if (chrome.runtime.lastError) { 
+            alert("This page needs to be refreshed once post-installation of the extension."); //for pages that haven't been refreshed after extension installation
+           }
         });
       } return
     });

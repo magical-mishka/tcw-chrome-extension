@@ -42,6 +42,7 @@ Save &amp; collect code snippets that work on the web.
 * v1.0.3 - Google Translate & tcw editor exceptions added. 
 * v1.0.4 - Auto-save language of snippet from Stackoverflow and other sites with similar syntax for saving language.
 * v1.0.5 - Save webpage in popup. 
+* v1.0.5 - Error handler for popup save button without page refresh.
 
 ## CONTRIBUTE
 
