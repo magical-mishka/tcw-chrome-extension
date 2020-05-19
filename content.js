@@ -42,10 +42,9 @@ function addBtn(element, text, margin, lang) {
     element.insertAdjacentHTML("afterend", "<div style='text-align:right; margin-bottom:" + margin + ";'><span style='background:#455a64; padding: 5px; border-radius: 0 0 5px 5px;  display: inline-block;'><a src='https://www.thiscodeworks.com/new?code=" + encodeURIComponent(textCode) + "&url=" + window.location.href + "&pagetitle=" + encodeURIComponent(document.title) + "&lang="+lang+"' class='saveCodeBtn' style='color: white; text-decoration: none; text-shadow: none;'><img src='" + url + "' style='margin:0; vertical-align: bottom; height: 19px; width: 19px;background: #ffffff00; border: none;'> Save<a></span></div>");
 }
 
-//Upon receiving sidebar command and userID, iframe is created
 chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
-        if (request === "sidebar") {
+        if (request === "sidebar") { //Creates sidebar for recent saves
             sendResponse({ received: "check" });
             var src = chrome.runtime.getURL("sidebar.html");
             var newFrame = document.createElement("iframe");
@@ -58,9 +57,13 @@ chrome.runtime.onMessage.addListener(
             newFrame.setAttribute("id", "code-sidebar");
             document.body.appendChild(newFrame);
         }
-        if (request.save === "page") {
+        if (request.save === "page") { //Content popup form to save webpage selected in popup.html
             sendResponse({ received: "check" });
-            createPopup(request.link);
+            createPopup(request.link, null);
+        }
+        if (request.save === "snippet") { //Content popup form to save snippet selected in context menu
+            sendResponse({ received: "check" });
+            createPopup(null, request.code);
         }
     });
 
@@ -110,10 +113,16 @@ if (window.location.href === "https://www.thiscodeworks.com/extension/initializi
     chrome.runtime.sendMessage({ logged: "yes" });
 }
 
-function createPopup(src){
+//popup to generate iframe with embedded form from thiscodeworks.com to save code
+function createPopup(src, code){
     var form = document.createElement("iframe");
     form.setAttribute("id", "save-code-popup");
-    form.setAttribute("src", src);
+    if (code) {
+        var textCode = code.replace(/'/g, "%27");
+        form.setAttribute("src", "https://www.thiscodeworks.com/new?code=" + encodeURIComponent(textCode) + "&url=" + window.location.href + "&pagetitle=" + encodeURIComponent(document.title));
+    } else {
+        form.setAttribute("src", src);
+    }
     var parent = document.getElementById("save-code-popup-parent");
     parent.style.width = "80%";
     parent.style.height = "80%";
