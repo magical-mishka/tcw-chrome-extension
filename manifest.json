@@ -1,6 +1,6 @@
 {
   "name": "Save Code",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Save & organize code snippets that work",
   "permissions": ["declarativeContent", "activeTab", "storage", "contextMenus"],
   "background": {
@@ -28,6 +28,7 @@
   },
   "web_accessible_resources": [
     "images/saveicon.png",
+    "images/exxpand.png",
     "sidebar.html"
    ],
    "content_security_policy": "script-src 'self' https://www.thiscodeworks.com;  object-src 'self'",

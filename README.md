@@ -45,6 +45,7 @@ Save &amp; collect code snippets that work on the web.
 * v1.0.5 - Error handler for popup save button without page refresh.
 * v1.0.6 - Context menu to save selected code as a snippet.
 * v1.0.7 - Preserve line breaks in selected text.
+* v1.0.8 - Added "open in new tab" button for items in sidebar
 
 ## CONTRIBUTE
 
