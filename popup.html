@@ -1,43 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <style>
-      body 
-      {
-        width:149px;
-        margin:0 0 0 0;
-        text-align: center;
-        color:black;
-        font:14px "Roboto", Helvetica, Arial, sans-serif;        
-      }
-      a
-      {
-        position: relative;
-        display: grid;
-        text-decoration:none;
-        color:white;
-        padding: 1em ;
-        transition: 0.4s;
-        background-color: #455a64;
-        border: 1px solid grey;
-      }
-      a:hover
-      {
-        background-color: #8BC34A;
-        cursor: pointer; 
-      }
-
-    </style>
+    <link rel='stylesheet' href='assets/styles.css' media='all' />
   </head>
   <body >
-  
-    <div>
-      <a id="save-link" target="_blank">Save webpage</a>
-    </div>
-    <div>
-      <a id="recent-saves" target="_blank">My saved code</a>
-    </div>
+    
+    <div class="box">
+      
+      <div class="save-code">
+        <span class="less">&lt;</span>
+        <span class="greater">&gt;</span>
+      </div>
 
+      <p><strong>This page contains the code which works?</strong><br/>Or simply bookmark it.</p>
+      
+      <a id="save-link" class="btn" target="_blank">Save webpage</a>
+      <a id="recent-saves" class="btn" target="_blank">My saved code</a>
+    </div>
     <script src="popup.js"></script>
 
   </body>
