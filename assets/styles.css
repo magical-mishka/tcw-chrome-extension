@@ -1,61 +1,58 @@
 body {
-    width: 350px;
+    width: 300px;
+    height: 350px;
     margin: 0;
     text-align: center;
     font:14px "Roboto", Helvetica, Arial, sans-serif;
 }
 .box {
-    padding: 40px 25px 50px;
-    background-color: #1d2225;
+    background-color: #f5f4f4;
+    height: 100%;
 }
-.save-code {
-    position: relative;
-    display: block;
-    margin: 0 auto 25px;
-    width: 100px;
-    height: 100px;
-    background-color: #8BC34A;
-    border-radius: 100%;
+.title {
+    display: flex;
+    background-color: #273238;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 40px;
 }
-.save-code span {
-    position: absolute;
-    top: 0;
-    font-family: monospace;
-    font-size: 75px;
-    font-weight: 700;
+.title>h2 {
+    color: white;
+    padding-left: 10px;
+    margin: 0;
 }
-.save-code span.greater {
-    right: 10px;
+.save-code-icon>a>img {
+    height: 35px;
 }
-.save-code span.less {
-    left: 10px;
-}
-p {
-    color: #fff;
-    line-height: 200%;
-}
-a {
+.btn {
+    width: 150px;
+    margin: 15px auto;
     display: block;
     color: #fff;
     padding: 0.8em;
     transition: 0.3s;
     border: 2px solid #ddd;
-    margin: 20px 30px;
     text-transform: uppercase;
     border-radius: 50px;
     letter-spacing: 0.5px;
+    background-color: #445a64;
 }
-
-a:hover {
-    background-color: #8BC34A;
+.btn:hover {
+    background-color: grey;
     border-color: transparent;
     cursor: pointer; 
 }
-a#save-link{
+.btn#recent-saves{
     background-color: #8BC34A;
     border-color: transparent;
 }
-a#save-link:hover {
-    background-color: #fff;
-    color: #1d2225;
+.btn#recent-saves:hover {
+    background-color: grey;
+}
+.help {
+    color: grey;
+    font-size: 12px;
+    float: right;
+    padding: 5px;
+    margin-top: 37px;
 }
