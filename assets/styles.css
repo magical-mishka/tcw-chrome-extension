@@ -15,6 +15,7 @@ body {
     align-items: center;
     padding: 10px;
     margin-bottom: 40px;
+    box-shadow: 0 6px 12px -3px rgba(0, 0, 0, 0.2);
 }
 .title>h2 {
     color: white;
@@ -49,10 +50,16 @@ body {
 .btn#recent-saves:hover {
     background-color: grey;
 }
-.help {
+.footer {
+    margin-top: 37px;
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+    align-items: flex-end;
+}
+.footer>.help {
     color: grey;
     font-size: 12px;
-    float: right;
     padding: 5px;
-    margin-top: 37px;
 }
+

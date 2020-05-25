@@ -2,8 +2,8 @@
     body {
         height: 100%;
         width: 100%;
-        color: white;
-        background: #445a64;
+        color: #222;
+        background: #f5f4f4;
         font:14px "Roboto", Helvetica, Arial, sans-serif; 
         margin: 0;       
     }
@@ -12,9 +12,19 @@
         justify-content: space-between;
         padding: 0 10px;
         background: #273238;
+        box-shadow: 0 6px 12px -3px rgba(0, 0, 0, 0.2);
     }
-    header>h1 {
+    header>.title>a>img {
+        height: 35px;
+    }
+    .title {
+        align-items: center;
+        display: flex;
+    }
+    .title>h1 {
         display: inline-flex;
+        color: white;
+        padding-left: 10px;
     }
     header>a {
         color: #f44336;
@@ -24,19 +34,24 @@
         padding: 0;
     }
     li {
-        list-style: none;
         padding: 10px;
     }
+    li:before {
+        content: ">";
+        margin: 0 10px 0 0;
+        font-weight: bold;
+        font-size: 18px;
+    }
     li>a {
-        color: #fff;
+        color: #222;
         text-decoration: none;
     }
     li:hover {
-        background: #8bc349;
+        background: #cecece;
     }
     li>pre {
-        background: #eceff1;
-        color: #222;
+        background: #1d1f23;
+        color: #fff;
         padding: 10px;
         overflow: scroll;
     }
@@ -51,7 +66,11 @@
 
 <section id="sidebar-section">
     <header>
-        <h1>Saved Code</h1>
+        <div class="title">
+            <a href="https://www.thiscodeworks.com/mysnippets" target="_blank">
+            <img src="images/saveCodeLogo.png"></a>
+            <h1>Saved Code</h1>
+          </div>
         <a href="#" id="destroySidebar"><h1>X</h1></a>
     </header>
     <div id="myDiv">

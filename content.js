@@ -53,6 +53,7 @@ chrome.runtime.onMessage.addListener(
             newFrame.style.zIndex = 9999;
             newFrame.style.height = "100vh";
             newFrame.style.top = 0;
+            newFrame.style["box-shadow"] = "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)";
             newFrame.setAttribute("src", src);
             newFrame.setAttribute("id", "code-sidebar");
             document.body.appendChild(newFrame);

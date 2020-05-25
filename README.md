@@ -47,6 +47,7 @@ Save &amp; collect code snippets that work on the web.
 * v1.0.7 - Preserve line breaks in selected text.
 * v1.0.8 - Added "open in new tab" button for items in sidebar
 * v1.0.9 - Style changes to pop-up (Thank you Sajjad for your help!)
+* v1.1.0.0 - Style changes to sidebar to match popup
 
 ## CONTRIBUTE
 
