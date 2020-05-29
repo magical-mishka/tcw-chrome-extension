@@ -1,23 +1,40 @@
 //Insert save code button below code blocks
 let codemirrorBlocks = document.getElementsByClassName("CodeMirror-code");
+
 if (codemirrorBlocks.length === 0) { //For simple <pre> blocks
     let codeBlocks = document.getElementsByTagName("pre");
-    for (elt of codeBlocks) {
-        if (elt.classList.contains("tw-ta")){ //No button on Google Translate
-            //Do nothing
-        } else {
-            var preClasses = elt.className;//to detect language of snippet in class
-            var lang = "";
-            if (preClasses.includes("lang-")){
-                lang = preClasses.split('lang-').pop().split(' ')[0];
-            }
-            if (preClasses.includes("language-")){
-                lang = preClasses.split('language-').pop().split(' ')[0];
-            }
+    let stripeCode = document.getElementsByClassName("ResourceSectionEndpoints-endpoints");
+    if (stripeCode.length !== 0) { // Path for Stripe API docs
+        for (elt of stripeCode) {
             var style = window.getComputedStyle(elt);
             var originalMargin = style.marginBottom;
             elt.style.marginBottom = 0;
-            addBtn(elt, elt.innerText, originalMargin, lang);
+            addBtn(elt, elt.textContent, originalMargin);
+        }
+        for (elt of codeBlocks) {
+            var style = window.getComputedStyle(elt);
+            var originalMargin = style.marginBottom;
+            elt.style.marginBottom = 0;
+            addBtn(elt, elt.innerText, originalMargin);
+        }
+    } else { //Ordinary <pre> blocks
+        for (elt of codeBlocks) {
+            if (elt.classList.contains("tw-ta") || elt.getAttribute("aria-hidden") == "true"){ 
+                //No button on Google Translate OR search bars with hidden <pre> tags
+            } else {
+                var preClasses = elt.className;//to detect language of snippet in class
+                var lang = "";
+                if (preClasses.includes("lang-")){
+                    lang = preClasses.split('lang-').pop().split(' ')[0];
+                }
+                if (preClasses.includes("language-")){
+                    lang = preClasses.split('language-').pop().split(' ')[0];
+                }
+                var style = window.getComputedStyle(elt);
+                var originalMargin = style.marginBottom;
+                elt.style.marginBottom = 0;
+                addBtn(elt, elt.innerText, originalMargin, lang);
+            }
         }
     }
 } else {
