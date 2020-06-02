@@ -49,6 +49,7 @@ Save &amp; collect code snippets that work on the web.
 * v1.0.9 - Style changes to pop-up (Thank you Sajjad for your help!)
 * v1.1.0.0 - Style changes to sidebar to match popup
 * v1.1.0.1 - Fix for hidden pre blocks inside search bars. And fix for Stripe docs pages where the button would go mad over the broken pre blocks inside the code. 
+* v1.1.0.2 - Opens sidebar in new tab where pages are not refreshed or have no URL.
 
 ## CONTRIBUTE
 

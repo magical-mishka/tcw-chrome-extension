@@ -7,8 +7,9 @@ document.addEventListener('DOMContentLoaded', function () {
     recent.addEventListener('click', function (response) {
       chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
         chrome.tabs.sendMessage(tabs[0].id, "sidebar", function (response) {
-          if (chrome.runtime.lastError) {
-            alert("This page needs to be refreshed before you can access recent saves."); //for pages that haven't been refreshed after extension installation
+          if (chrome.runtime.lastError) 
+          {var url = chrome.runtime.getURL("sidebar.html"); // opens sidebar in new tab if there is an issue.
+            chrome.tabs.create({url});
           }
         });
       });
