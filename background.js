@@ -1,5 +1,15 @@
 'use strict';
 
+chrome.storage.local.get(['id'], function (result) {
+  if (result.id) {
+      return
+  } else {
+    chrome.tabs.create({ //To start sign user into extension
+      url: 'https://www.thiscodeworks.com/extension/initiate'
+    });
+  }
+});
+
 chrome.runtime.onInstalled.addListener(function() {
   
     chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
@@ -11,10 +21,6 @@ chrome.runtime.onInstalled.addListener(function() {
             actions: [new chrome.declarativeContent.ShowPageAction()]
       }
     ]);
-    });
-
-    chrome.tabs.create({ //To start sign user into extension
-      url: 'https://www.thiscodeworks.com/extension/initiate'
     });
   });
 
@@ -38,10 +44,10 @@ function getUserId() {
               })               
           }
           else if (xmlhttp.status == 400) {
-              alert('Error 400 --> Please send a screenshot & some context of this error to mishka@thiscodeworks.com');
+              alert('Error 400 --> Please send a screenshot & some context of this error to info@thiscodeworks.com');
           }
           else {
-              alert('Error != 400 --> Please send a screenshot & some context of this error to mishka@thiscodeworks.com');
+              alert('Error != 400 --> Please send a screenshot & some context of this error to info@thiscodeworks.com');
           }
       }
   };
