@@ -1,62 +1,74 @@
-//Insert save code button below code blocks
-let codemirrorBlocks = document.getElementsByClassName("CodeMirror-code");
+var body = document.getElementsByTagName("body")[0];
+body.addEventListener('DOMContentLoaded', scanCode(), false);
 
-if (codemirrorBlocks.length === 0) { //For simple <pre> blocks
-    let codeBlocks = document.getElementsByTagName("pre");
-    let stripeCode = document.getElementsByClassName("ResourceSectionEndpoints-endpoints");
-    if (stripeCode.length !== 0) { // Path for Stripe API docs
-        for (elt of stripeCode) {
-            var style = window.getComputedStyle(elt);
-            var originalMargin = style.marginBottom;
-            elt.style.marginBottom = 0;
-            addBtn(elt, elt.textContent, originalMargin);
-        }
-        for (elt of codeBlocks) {
-            var style = window.getComputedStyle(elt);
-            var originalMargin = style.marginBottom;
-            elt.style.marginBottom = 0;
-            addBtn(elt, elt.innerText, originalMargin);
-        }
-    } else { //Ordinary <pre> blocks
-        for (elt of codeBlocks) {
-            if (elt.classList.contains("tw-ta") || elt.getAttribute("aria-hidden") == "true"){ 
-                //No button on Google Translate OR search bars with hidden <pre> tags
-            } else {
-                var preClasses = elt.className;//to detect language of snippet in class
-                var lang = "";
-                if (preClasses.includes("lang-")){
-                    lang = preClasses.split('lang-').pop().split(' ')[0];
-                }
-                if (preClasses.includes("language-")){
-                    lang = preClasses.split('language-').pop().split(' ')[0];
-                }
+function scanCode() {  //Insert save code button below code blocks
+    let codemirrorBlocks = [];
+    var codemirrorCode = document.getElementsByClassName("CodeMirror-code"); //For Codepen, JSFiddle
+    var codemirror = document.getElementsByClassName("CodeMirror"); //For paper.js
+    if (codemirrorCode.length !== 0) {
+        codemirrorBlocks = codemirrorCode;
+    } else if (codemirror.length !== 0) {
+        codemirrorBlocks = codemirror;
+    }
+    if (codemirrorBlocks.length === 0) { //For simple <pre> blocks
+        let codeBlocks = document.getElementsByTagName("pre");
+        let stripeCode = document.getElementsByClassName("ResourceSectionEndpoints-endpoints");
+        if (stripeCode.length !== 0) { // Path for Stripe API docs
+            for (elt of stripeCode) {
                 var style = window.getComputedStyle(elt);
                 var originalMargin = style.marginBottom;
                 elt.style.marginBottom = 0;
-                addBtn(elt, elt.innerText, originalMargin, lang);
+                addBtn(elt, elt.textContent, originalMargin);
+            }
+        } else { //Ordinary <pre> blocks
+            for (elt of codeBlocks) {
+                if (elt.classList.contains("tw-ta") || elt.getAttribute("aria-hidden") == "true") {
+                    //No button on Google Translate OR search bars with hidden <pre> tags
+                } else {
+                    var preClasses = elt.className;//to detect language of snippet in class
+                    var lang = "";
+                    if (preClasses.includes("lang-")) {
+                        lang = preClasses.split('lang-').pop().split(' ')[0];
+                    }
+                    if (preClasses.includes("language-")) {
+                        lang = preClasses.split('language-').pop().split(' ')[0];
+                    }
+                    var style = window.getComputedStyle(elt);
+                    var originalMargin = style.marginBottom;
+                    elt.style.marginBottom = 0;
+                    addBtn(elt, elt.innerText, originalMargin, lang);
+                }
             }
         }
-    }
-} else {
-    for (elt of codemirrorBlocks) { // For sites that use Codemirror like Codepen, JSFiddle
-        if (elt.classList.contains("tw-ta")){ //No button on tcw
-            //Do nothing
-        } else {
-        var textBlock = elt.innerText;
-        var lineNumbers = elt.getElementsByClassName("CodeMirror-linenumber");
-        for (var i = 0; i < lineNumbers.length; i++) { // remove linenumbers from snippet
-            textBlock = textBlock.replace(lineNumbers[i].innerText, "");
-        }
-        addBtn(elt, textBlock);
+    } else {
+        for (elt of codemirrorBlocks) { // For sites that use Codemirror like Codepen, JSFiddle
+            if (elt.classList.contains("tw-ta")) { //No button on tcw
+                //Do nothing
+            } else {
+                var textBlock = elt.innerText;
+                let lineNumbers = [];
+                var ln = elt.getElementsByClassName("CodeMirror-linenumber");
+                var gutter = elt.getElementsByClassName("CodeMirror-gutter");
+                if (gutter.length == 0) {
+                    lineNumbers = ln;
+                } else {
+                    lineNumbers = gutter;
+                }
+                for (var i = 0; i < lineNumbers.length; i++) { // remove linenumbers from snippet
+                    textBlock = textBlock.replace(lineNumbers[i].innerText, "");
+                }
+                addBtn(elt, textBlock);
+            }
         }
     }
 }
 
 //Function to insert save code button
 function addBtn(element, text, margin, lang) {
-    var textCode = text.replace(/'/g, "%27");
+    var textCode = text.replace(/'/g, "%27"); //Encode apostraphe in code
+    var pageTitle = document.title.replace(/'/g, "%27");  //Encode apostraphe in page title
     var url = chrome.runtime.getURL("images/saveicon.png");
-    element.insertAdjacentHTML("afterend", "<div style='text-align:right; margin-bottom:" + margin + ";'><span style='background:#455a64; padding: 5px; border-radius: 0 0 5px 5px;  display: inline-block;'><a src='https://www.thiscodeworks.com/new?code=" + encodeURIComponent(textCode) + "&url=" + window.location.href + "&pagetitle=" + encodeURIComponent(document.title) + "&lang="+lang+"' class='saveCodeBtn' style='color: white; text-decoration: none; text-shadow: none;'><img src='" + url + "' style='margin:0; vertical-align: bottom; height: 19px; width: 19px;background: #ffffff00; border: none;'> Save<a></span></div>");
+    element.insertAdjacentHTML("afterend", "<div style='text-align:right; margin-bottom:" + margin + ";'><span style='background:#455a64; padding: 5px; border-radius: 0 0 5px 5px;  display: inline-block;'><a src='https://www.thiscodeworks.com/new?code=" + encodeURIComponent(textCode) + "&url=" + window.location.href + "&pagetitle=" + encodeURIComponent(pageTitle) + "&lang=" + lang + "' class='saveCodeBtn' style='color: white; text-decoration: none; text-shadow: none;'><img src='" + url + "' style='margin:0; vertical-align: bottom; height: 19px; width: 19px;background: #ffffff00; border: none;'> Save<a></span></div>");
 }
 
 chrome.runtime.onMessage.addListener(
@@ -100,7 +112,7 @@ function receiveMessage(event) {
     if (event.data == "removetheiframe") {//destroys save code popup
         var iframe = document.getElementById('save-code-popup');
         iframe.parentNode.removeChild(iframe);
-        saveFrame.removeAttribute("style");    
+        saveFrame.removeAttribute("style");
     }
 }
 
@@ -108,7 +120,7 @@ function receiveMessage(event) {
 var saveBtns = document.getElementsByClassName("saveCodeBtn");
 for (var i = 0; i < saveBtns.length; i++) {
     saveBtns[i].addEventListener("click", function () {
-       createPopup(this.getAttribute("src"));
+        createPopup(this.getAttribute("src"));
     });
 }
 
@@ -116,7 +128,7 @@ for (var i = 0; i < saveBtns.length; i++) {
 var popup = document.getElementById("save-code-popup-parent");
 document.addEventListener('click', function (event) {
     var iframe = document.getElementById('save-code-popup');
-    if (iframe){
+    if (iframe) {
         var isClickInside = popup.contains(event.target);
         if (event.target.classList.contains('saveCodeBtn')) return;
         if (!isClickInside) {
@@ -132,7 +144,7 @@ if (window.location.href === "https://www.thiscodeworks.com/extension/initializi
 }
 
 //popup to generate iframe with embedded form from thiscodeworks.com to save code
-function createPopup(src, code){
+function createPopup(src, code) {
     var form = document.createElement("iframe");
     form.setAttribute("id", "save-code-popup");
     if (code) {

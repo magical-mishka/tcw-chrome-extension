@@ -51,6 +51,7 @@ Save &amp; collect code snippets that work on the web.
 * v1.1.0.1 - Fix for hidden pre blocks inside search bars. And fix for Stripe docs pages where the button would go mad over the broken pre blocks inside the code. 
 * v1.1.0.2 - Opens sidebar in new tab where pages are not refreshed or have no URL.
 * v1.1.0.3 - No longer initiates the extension on update
+* v1.1.0.4 - Resolved bug where multiple buttons showed up on paper.js - related to CodeMirror. Also Added URI encoding exception for apostraphe in page title
 
 ## CONTRIBUTE
 
