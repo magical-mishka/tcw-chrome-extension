@@ -52,6 +52,7 @@ Save &amp; collect code snippets that work on the web.
 * v1.1.0.2 - Opens sidebar in new tab where pages are not refreshed or have no URL.
 * v1.1.0.3 - No longer initiates the extension on update
 * v1.1.0.4 - Resolved bug where multiple buttons showed up on paper.js - related to CodeMirror. Also Added URI encoding exception for apostraphe in page title
+* v1.1.0.5 - Resolved formatting issue on dev.to where a background was forced on the button parent div. And made `img` inside it `inline-block`.
 
 ## CONTRIBUTE
 

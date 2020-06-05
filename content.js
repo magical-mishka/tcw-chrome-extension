@@ -1,3 +1,5 @@
+let url = window.location.href;
+
 var body = document.getElementsByTagName("body")[0];
 body.addEventListener('DOMContentLoaded', scanCode(), false);
 
@@ -36,6 +38,7 @@ function scanCode() {  //Insert save code button below code blocks
                     var style = window.getComputedStyle(elt);
                     var originalMargin = style.marginBottom;
                     elt.style.marginBottom = 0;
+                    var preWidth = style.width;
                     addBtn(elt, elt.innerText, originalMargin, lang);
                 }
             }
@@ -68,7 +71,7 @@ function addBtn(element, text, margin, lang) {
     var textCode = text.replace(/'/g, "%27"); //Encode apostraphe in code
     var pageTitle = document.title.replace(/'/g, "%27");  //Encode apostraphe in page title
     var url = chrome.runtime.getURL("images/saveicon.png");
-    element.insertAdjacentHTML("afterend", "<div style='text-align:right; margin-bottom:" + margin + ";'><span style='background:#455a64; padding: 5px; border-radius: 0 0 5px 5px;  display: inline-block;'><a src='https://www.thiscodeworks.com/new?code=" + encodeURIComponent(textCode) + "&url=" + window.location.href + "&pagetitle=" + encodeURIComponent(pageTitle) + "&lang=" + lang + "' class='saveCodeBtn' style='color: white; text-decoration: none; text-shadow: none;'><img src='" + url + "' style='margin:0; vertical-align: bottom; height: 19px; width: 19px;background: #ffffff00; border: none;'> Save<a></span></div>");
+    element.insertAdjacentHTML("afterend", "<div class='saveCodeBtnDiv' style='text-align:right; margin-bottom:" + margin + ";'><span style='background:#455a64; padding: 5px; border-radius: 0 0 5px 5px;  display: inline-block;'><a src='https://www.thiscodeworks.com/new?code=" + encodeURIComponent(textCode) + "&url=" + url + "&pagetitle=" + encodeURIComponent(pageTitle) + "&lang=" + lang + "' class='saveCodeBtn' style='color: white; text-decoration: none; text-shadow: none;'><img src='" + url + "' style='margin:0; display: inline-block; vertical-align: middle; height: 19px; width: 19px;background: #ffffff00; border: none;'> Save<a></span></div>");
 }
 
 chrome.runtime.onMessage.addListener(
@@ -137,10 +140,19 @@ document.addEventListener('click', function (event) {
         }
     } return;
 }, false);
-
+ 
 //Send URL to background.js for intializing
-if (window.location.href === "https://www.thiscodeworks.com/extension/initializing") {
+if (url === "https://www.thiscodeworks.com/extension/initializing") {
     chrome.runtime.sendMessage({ logged: "yes" });
+}
+
+//For dev.to bug where a highlight class adds a bg to the button's parent div
+if (url.includes("dev.to")) {
+    console.log("dev.to here ")
+   var div = document.getElementsByClassName("saveCodeBtnDiv");
+   for (i=0; i<div.length; i++){
+    div[i].style.background = "white";
+   }
 }
 
 //popup to generate iframe with embedded form from thiscodeworks.com to save code
