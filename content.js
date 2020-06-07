@@ -70,8 +70,8 @@ function scanCode() {  //Insert save code button below code blocks
 function addBtn(element, text, margin, lang) {
     var textCode = text.replace(/'/g, "%27"); //Encode apostraphe in code
     var pageTitle = document.title.replace(/'/g, "%27");  //Encode apostraphe in page title
-    var url = chrome.runtime.getURL("images/saveicon.png");
-    element.insertAdjacentHTML("afterend", "<div class='saveCodeBtnDiv' style='text-align:right; margin-bottom:" + margin + ";'><span style='background:#455a64; padding: 5px; border-radius: 0 0 5px 5px;  display: inline-block;'><a src='https://www.thiscodeworks.com/new?code=" + encodeURIComponent(textCode) + "&url=" + url + "&pagetitle=" + encodeURIComponent(pageTitle) + "&lang=" + lang + "' class='saveCodeBtn' style='color: white; text-decoration: none; text-shadow: none;'><img src='" + url + "' style='margin:0; display: inline-block; vertical-align: middle; height: 19px; width: 19px;background: #ffffff00; border: none;'> Save<a></span></div>");
+    var imageURL = chrome.runtime.getURL("images/saveicon.png");
+    element.insertAdjacentHTML("afterend", "<div class='saveCodeBtnDiv' style='text-align:right; margin-bottom:" + margin + ";'><span style='background:#455a64; padding: 5px; border-radius: 0 0 5px 5px;  display: inline-block;'><a src='https://www.thiscodeworks.com/new?code=" + encodeURIComponent(textCode) + "&url=" + url + "&pagetitle=" + encodeURIComponent(pageTitle) + "&lang=" + lang + "' class='saveCodeBtn' style='color: white; text-decoration: none; text-shadow: none;'><img src='" + imageURL + "' style='margin:0; display: inline-block; vertical-align: middle; height: 19px; width: 19px;background: #ffffff00; border: none;'> Save<a></span></div>");
 }
 
 chrome.runtime.onMessage.addListener(
