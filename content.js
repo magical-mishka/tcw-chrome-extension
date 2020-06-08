@@ -166,6 +166,8 @@ function createPopup(src, code) {
         form.setAttribute("src", src);
     }
     var parent = document.getElementById("save-code-popup-parent");
+    var preloaderURL = chrome.runtime.getURL("images/preloader.gif");
+    parent.style.background = "white url('"+preloaderURL+"') top no-repeat";
     parent.style.width = "80%";
     parent.style.height = "80%";
     parent.style.position = "fixed";
@@ -176,6 +178,5 @@ function createPopup(src, code) {
     parent.style["box-shadow"] = "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)";
     form.style.width = "100%";
     form.style.height = "100%";
-    parent.style.background = "rgba(0, 0, 0, 0.5)";
     parent.appendChild(form);
 }
