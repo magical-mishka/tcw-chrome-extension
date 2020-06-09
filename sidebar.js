@@ -48,15 +48,21 @@ function buildList(data) {
         item.appendChild(anchor);
         item.appendChild(code);
         list.appendChild(item);
-        var expand = document.createElement("a");
-        expand.setAttribute("href", "https://www.thiscodeworks.com/"+json[i]._id);
-        anchor.setAttribute("href", "#");
+        var icons = document.createElement("span"); //Holds icons
+        icons.setAttribute("class", "icons");
+        var expand = document.createElement("a"); //Adds `open in new tab` btn
+        expand.setAttribute("href", "https://www.thiscodeworks.com/" + json[i]._id);
+        anchor.setAttribute("href", "javascript:;");
         expand.setAttribute("target", "_blank");
         expand.setAttribute("class", "expand");
         expand.setAttribute("title", "Open & edit in new tab");
-        expand.classList.toggle("hide");
-        anchor.insertAdjacentElement("afterend", expand);
-
+        var copy = document.createElement("a"); //Adds `copy to clipboard` btn
+        copy.setAttribute("class", "copy");
+        copy.setAttribute("title", "Copy to clipboard");
+        icons.classList.toggle("hide");
+        icons.appendChild(expand);
+        icons.appendChild(copy);
+        anchor.insertAdjacentElement("beforebegin", icons);
     }
     return list;
 }
@@ -68,20 +74,39 @@ document.getElementById("destroySidebar").addEventListener("click", function () 
 
 //Expand/collapse code block in list
 document.addEventListener("click", function (event) {
-    if(event.target.tagName.toLowerCase() === "pre"){return}; //prevents close on clicking code
+    var code = event.target.closest("li").querySelector("pre").innerText;
+    if (event.target.tagName.toLowerCase() === "pre") { return }; //prevents close on clicking code
+    if (event.target.classList.contains("copy")) { //click to copy function
+        var emptyArea = document.createElement('TEXTAREA');
+        emptyArea.innerHTML = code;
+        const parentElement = document.getElementById('myDiv');
+        parentElement.appendChild(emptyArea);
+        emptyArea.select();
+        document.execCommand('copy');
+        parentElement.removeChild(emptyArea);
+        return
+    }
     var pre = event.target.closest("li").querySelector("pre");
-    if (pre!= null){
+    if (pre != null) {
         pre.classList.toggle("hide");
-        var expand = event.target.closest("li").querySelector(".expand");
-        expand.classList.toggle("hide");
-        if (expand.querySelector("img") != null){
-            expand.innerHTML = "";
+        var icons = event.target.closest("li").querySelector(".icons");
+        var expandA = event.target.closest("li").querySelector(".expand");
+        var copyA = event.target.closest("li").querySelector(".copy");
+        icons.classList.toggle("hide");
+        if (icons.querySelector("img") != null) {
+            expandA.innerHTML = "";
+            copyA.innerText = "";
             return
         }
-        var image = document.createElement("img");
-        image.setAttribute("src", chrome.runtime.getURL("images/expand.png"));
-        expand.appendChild(image);
-      
+        var expand = document.createElement("img");
+        expand.setAttribute("src", chrome.runtime.getURL("images/expand.png"));
+        expandA.appendChild(expand);
+        if (code){
+            var copy = document.createElement("img");
+            copy.setAttribute("src", chrome.runtime.getURL("images/copy.png"));
+            copy.setAttribute("class", "copy");
+            copyA.appendChild(copy);
+        }
     };
-});
 
+});

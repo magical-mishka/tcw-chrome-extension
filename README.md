@@ -56,6 +56,7 @@ Save &amp; collect code snippets that work on the web.
 * v1.1.0.6 - Close popup after clicking a button on it (Thanks Sajjad for the suggestion!).
 * v1.1.0.7 - Major mistake in last update that pushed the wrong URL to the save button.
 * v1.1.0.8 - Added loading gif to popup (Thank you Ali Raza for the suggestion!).
+* v1.1.0.9 - Added "click to copy" button for code in sidebar. Also added encoding for # in URL for popup.
 
 ## CONTRIBUTE
 
