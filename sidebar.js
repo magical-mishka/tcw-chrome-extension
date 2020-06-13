@@ -46,10 +46,13 @@ function buildList(data) {
         var anchor = document.createElement("a");
         anchor.innerHTML = json[i].title;
         var code = document.createElement("pre");
+        var edit = document.createElement("a");
         if (json[i].code == "" || json[i].code == undefined) { //For posts w/o code
             code.innerText = json[i].source;
+            edit.setAttribute("href",  "https://www.thiscodeworks.com/" + json[i]._id+"/editlink");
         } else {
             code.innerText = json[i].code;
+            edit.setAttribute("href",  "https://www.thiscodeworks.com/" + json[i]._id+"/edit");
         }
         code.setAttribute("class", "hide");
         var item = document.createElement('li');
@@ -67,7 +70,11 @@ function buildList(data) {
         var copy = document.createElement("a"); //Adds `copy to clipboard` btn
         copy.setAttribute("class", "copy");
         copy.setAttribute("title", "Copy to clipboard");
+        edit.setAttribute("target", "_blank");
+        edit.setAttribute("class", "edit");
+        edit.setAttribute("title", "Edit post");
         icons.classList.toggle("hide");
+        icons.appendChild(edit);
         icons.appendChild(expand);
         icons.appendChild(copy);
         anchor.insertAdjacentElement("beforebegin", icons);
@@ -101,6 +108,7 @@ list.addEventListener("click", function (event) {
         var icons = event.target.closest("li").querySelector(".icons");
         var expandA = event.target.closest("li").querySelector(".expand");
         var copyA = event.target.closest("li").querySelector(".copy");
+        var editA = event.target.closest("li").querySelector(".edit");
         icons.classList.toggle("hide");
         if (icons.querySelector("img") != null) {
             expandA.innerHTML = "";
@@ -114,6 +122,9 @@ list.addEventListener("click", function (event) {
         copy.setAttribute("src", chrome.runtime.getURL("images/copy.png"));
         copy.setAttribute("class", "copy");
         copyA.appendChild(copy);
+        var edit = document.createElement("img");
+        edit.setAttribute("src", chrome.runtime.getURL("images/edit.png"));
+        editA.appendChild(edit);
     };
 });
 

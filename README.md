@@ -60,6 +60,7 @@ Save &amp; collect code snippets that work on the web.
 * v1.1.1.0 - Github blocks POST request to save code in iframe. Now form will open in new tab.
 * v1.1.1.1 - Searchbar implemented in sidebar! Also, removes copy button for "undefined" code snippets.
 * v1.1.1.2 - Sidebar: posts with no code display URL instead.
+* v1.1.1.3 - Add edit button to posts in sidebar.
 
 ## CONTRIBUTE
 
