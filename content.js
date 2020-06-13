@@ -102,7 +102,7 @@ chrome.runtime.onMessage.addListener(
         }
     });
 
-//create element to contain save code popup & preloader
+//Create element to contain save code popup & preloader
 var saveFrame = document.createElement("div");
 saveFrame.setAttribute("id", "save-code-popup-parent")
 document.body.appendChild(saveFrame);
@@ -157,14 +157,21 @@ if (url.includes("dev.to")) {
    }
 }
 
-//popup to generate iframe with embedded form from thiscodeworks.com to save code
+//Popup to generate iframe with embedded form from thiscodeworks.com to save code
 function createPopup(src, code) {
     var form = document.createElement("iframe");
     form.setAttribute("id", "save-code-popup");
-    if (code) {
+    if (code) { // Save snippets
         var textCode = code.replace(/'/g, "%27");
-        form.setAttribute("src", "https://www.thiscodeworks.com/new?code=" + encodeURIComponent(textCode) + "&url=" + window.location.href + "&pagetitle=" + encodeURIComponent(document.title));
-    } else {
+        if (url.includes("github.com")){ //Opens save form in new tab for Github code.
+            chrome.runtime.sendMessage({ github: "newtab", url: "https://www.thiscodeworks.com/new?code=" + encodeURIComponent(textCode) + "&url=" + url + "&pagetitle=" + encodeURIComponent(document.title)});
+            return 
+        };
+        form.setAttribute("src", "https://www.thiscodeworks.com/new?code=" + encodeURIComponent(textCode) + "&url=" + url + "&pagetitle=" + encodeURIComponent(document.title));
+    } else { //Save webpages
+        if (url.includes("github.com")){
+            chrome.runtime.sendMessage({ github: "newtab", url: src}); return
+        }
         form.setAttribute("src", src);
     }
     var parent = document.getElementById("save-code-popup-parent");

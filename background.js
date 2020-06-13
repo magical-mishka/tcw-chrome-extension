@@ -29,6 +29,11 @@ chrome.runtime.onInstalled.addListener(function() {
       if (request.logged == "yes"){
         getUserId();   //Save user ID for getting & saving code without visiting thiscodeworks.com
       }
+      if (request.github == "newtab"){
+        chrome.tabs.create({ //To start sign user into extension
+          url: request.url
+        });
+      }
     });
 
 
