@@ -58,6 +58,7 @@ Save &amp; collect code snippets that work on the web.
 * v1.1.0.8 - Added loading gif to popup (Thank you Ali Raza for the suggestion!).
 * v1.1.0.9 - Added "click to copy" button for code in sidebar. Also added encoding for # in URL for popup.
 * v1.1.1.0 - Github blocks POST request to save code in iframe. Now form will open in new tab.
+* v1.1.1.1 - Searchbar implemented in sidebar! Also, removes copy button for "undefined" code snippets.
 
 ## CONTRIBUTE
 

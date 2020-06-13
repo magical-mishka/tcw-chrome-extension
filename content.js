@@ -150,7 +150,6 @@ if (url === "https://www.thiscodeworks.com/extension/initializing") {
 
 //For dev.to bug where a highlight class adds a bg to the button's parent div
 if (url.includes("dev.to")) {
-    console.log("dev.to here ")
    var div = document.getElementsByClassName("saveCodeBtnDiv");
    for (i=0; i<div.length; i++){
     div[i].style.background = "white";

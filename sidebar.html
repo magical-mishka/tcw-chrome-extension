@@ -4,9 +4,10 @@
         width: 100%;
         color: #222;
         background: #f5f4f4;
-        font:14px "Roboto", Helvetica, Arial, sans-serif; 
-        margin: 0;       
+        font: 14px "Roboto", Helvetica, Arial, sans-serif;
+        margin: 0;
     }
+
     header {
         display: flex;
         justify-content: space-between;
@@ -14,72 +15,122 @@
         background: #273238;
         box-shadow: 0 6px 12px -3px rgba(0, 0, 0, 0.2);
     }
+
     header>.title>a>img {
         height: 35px;
     }
+
     .title {
         align-items: center;
         display: flex;
     }
+
     .title>h1 {
         display: inline-flex;
         color: white;
         padding-left: 10px;
     }
+
     header>a {
         color: #f44336;
         text-decoration: none;
     }
+
+    #myDiv>p {
+        padding: 20px;
+        font-size: 18px;
+    }
+
     ul {
         padding: 0;
     }
+
     li {
         padding: 10px;
     }
+
     li:before {
         content: ">";
         margin: 0 10px 0 0;
         font-weight: bold;
         font-size: 18px;
     }
+
     li>a {
         color: #222;
         text-decoration: none;
     }
+
     li:hover {
         background: #cecece;
     }
+
     li>pre {
         background: #1d1f23;
         color: #fff;
         padding: 10px;
         overflow: scroll;
     }
+
     .hide {
         display: none;
     }
+
     .icons {
-        float:right;
+        float: right;
         margin: 7px;
     }
+
     .copy {
         margin-left: 12px;
         cursor: pointer;
     }
-</style>
 
+    .searchbar {
+        display: flex;
+        background: #fff;
+        margin: 7px;
+        padding: 10px;
+        box-shadow: 0 1px 10px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        border-radius: 2px;
+    }
+
+    .searchbar>input {
+        border: none;
+        width: 92%;
+        outline: none;
+        padding-left: 10px;
+    }
+
+    .searchbar>button {
+        border: none;
+        background: none;
+        cursor: pointer;
+    }
+</style>
 <section id="sidebar-section">
     <header>
         <div class="title">
             <a href="https://www.thiscodeworks.com/mysnippets" target="_blank">
-            <img src="images/saveCodeLogo.png"></a>
+                <img src="images/saveCodeLogo.png"></a>
             <h1>Saved Code</h1>
-          </div>
-        <a href="#" id="destroySidebar"><h1>X</h1></a>
+        </div>
+        <a href="#" id="destroySidebar">
+            <h1>X</h1>
+        </a>
     </header>
+    <div class="searchbar">
+        <select id="search-options">
+            <option value="all" selected>All:</option>
+            <option value="code">Code:</option>
+            <option value="title">Title:</option>
+            <option value="tags">Tag:</option>
+        </select>
+        <input type="text" id="search-input">
+        <button type="submit"><img src="/images/search.png" id="search-btn"></button>
+    </div>
     <div id="myDiv">
         <p>Loading...</p>
     </div>
-    </section>
-
+</section>
 <script src="sidebar.js"></script>
