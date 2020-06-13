@@ -46,7 +46,11 @@ function buildList(data) {
         var anchor = document.createElement("a");
         anchor.innerHTML = json[i].title;
         var code = document.createElement("pre");
-        code.innerText = json[i].code;
+        if (json[i].code == "" || json[i].code == undefined) { //For posts w/o code
+            code.innerText = json[i].source;
+        } else {
+            code.innerText = json[i].code;
+        }
         code.setAttribute("class", "hide");
         var item = document.createElement('li');
         item.appendChild(anchor);
@@ -106,12 +110,10 @@ list.addEventListener("click", function (event) {
         var expand = document.createElement("img");
         expand.setAttribute("src", chrome.runtime.getURL("images/expand.png"));
         expandA.appendChild(expand);
-        if (code !== "" && code !== "undefined") {
-            var copy = document.createElement("img");
-            copy.setAttribute("src", chrome.runtime.getURL("images/copy.png"));
-            copy.setAttribute("class", "copy");
-            copyA.appendChild(copy);
-        }
+        var copy = document.createElement("img");
+        copy.setAttribute("src", chrome.runtime.getURL("images/copy.png"));
+        copy.setAttribute("class", "copy");
+        copyA.appendChild(copy);
     };
 });
 
