@@ -1,7 +1,19 @@
 let url = window.location.href;
+var disable;
 
-var body = document.getElementsByTagName("body")[0];
-body.addEventListener('DOMContentLoaded', scanCode(), false);
+//Check if user has disabled save btns
+chrome.storage.local.get(['disable'], function (result) {
+    disable = result.disable;
+    var body = document.getElementsByTagName("body")[0];
+    body.addEventListener('DOMContentLoaded', addSaveBtns(), false);
+});
+
+//Add Save btns depending on user preference
+function addSaveBtns() {
+    if (disable !== true) {
+        scanCode();
+    }
+}
 
 function scanCode() {  //Insert save code button below code blocks
     let codemirrorBlocks = [];
@@ -122,12 +134,15 @@ function receiveMessage(event) {
 }
 
 //Save snippet pop-up generator
-var saveBtns = document.getElementsByClassName("saveCodeBtn");
-for (var i = 0; i < saveBtns.length; i++) {
-    saveBtns[i].addEventListener("click", function () {
-        createPopup(this.getAttribute("src"));
-    });
-}
+var saveBtns;
+setTimeout(() => { //To account for delay from fetching disable from storage 
+    saveBtns = document.getElementsByClassName("saveCodeBtn");
+    for (var i = 0; i < saveBtns.length; i++) {
+        saveBtns[i].addEventListener("click", function () {
+            createPopup(this.getAttribute("src"));
+        });
+    }
+}, 50);
 
 //Kill save code popup when clicked outside frame
 var popup = document.getElementById("save-code-popup-parent");
@@ -150,10 +165,12 @@ if (url === "https://www.thiscodeworks.com/extension/initializing") {
 
 //For dev.to bug where a highlight class adds a bg to the button's parent div
 if (url.includes("dev.to")) {
-   var div = document.getElementsByClassName("saveCodeBtnDiv");
-   for (i=0; i<div.length; i++){
-    div[i].style.background = "white";
-   }
+    setTimeout(() => { //To account for delay from fetching disable from storage 
+        var div = document.getElementsByClassName("saveCodeBtnDiv");
+        for (i = 0; i < div.length; i++) {
+            div[i].style.background = "white";
+        }
+    }, 50);
 }
 
 //Popup to generate iframe with embedded form from thiscodeworks.com to save code

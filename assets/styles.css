@@ -1,9 +1,7 @@
 body {
     width: 300px;
-    height: 350px;
+    height: 100%;
     margin: 0;
-    text-align: center;
-    font:14px "Roboto", Helvetica, Arial, sans-serif;
 }
 .box {
     background-color: #f5f4f4;
@@ -14,7 +12,6 @@ body {
     background-color: #273238;
     align-items: center;
     padding: 10px;
-    margin-bottom: 40px;
     box-shadow: 0 6px 12px -3px rgba(0, 0, 0, 0.2);
 }
 .title>h2 {
@@ -24,6 +21,17 @@ body {
 }
 .save-code-icon>a>img {
     height: 35px;
+}
+.disable {
+    margin-bottom: 40px;
+    text-align: right;
+    padding: 5px;
+    color: grey;
+    font-size: 12px;
+}
+.content {
+    text-align: center;
+    font:14px "Roboto", Helvetica, Arial, sans-serif;
 }
 .btn {
     width: 150px;

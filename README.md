@@ -61,6 +61,7 @@ Save &amp; collect code snippets that work on the web.
 * v1.1.1.1 - Searchbar implemented in sidebar! Also, removes copy button for "undefined" code snippets.
 * v1.1.1.2 - Sidebar: posts with no code display URL instead.
 * v1.1.1.3 - Add edit button to posts in sidebar.
+* v1.1.1.4 - Users can now disable the Save button.
 
 ## CONTRIBUTE
 
