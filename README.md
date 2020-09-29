@@ -1,6 +1,11 @@
 # tcw-chrome-extension
 Save &amp; collect code snippets that work on the web.
 
+NOTE: THIS REPO IS NO LONGER BEING UPDATED NOR MAINTAINED.
+
+## LATEST VERSION
+[Get it here](https://chrome.google.com/webstore/detail/save-code/annlhfjgbkfmbbejkbdpgbmpbcjnehbb)
+
 ## INSTALLATION INSTRUCTIONS
 
 1. Download ZIP. (Green button at the top right)
